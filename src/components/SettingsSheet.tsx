@@ -17,11 +17,12 @@ export function SettingsSheet() {
 
   const testConnection = async () => {
     setTesting(true); setTestResult(null);
+    const webhookUrl = (import.meta.env.VITE_N8N_WEBHOOK_URL as string) || 'https://pervizs.app.n8n.cloud/webhook/chatbot';
     try {
-      const res = await fetch('/api/test', {
+      const res = await fetch(webhookUrl, {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify({ apiKey: s.apiKey, model: s.model }),
+        body: JSON.stringify({ message: 'test', chatInput: 'test' }),
       });
       if (res.ok) { setTestResult('ok'); addToast({ type: 'success', message: t.connectionSuccess }); }
       else { setTestResult('fail'); addToast({ type: 'error', message: t.connectionFailed }); }

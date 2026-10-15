@@ -4,8 +4,7 @@
   "version": "1.0.0",
   "type": "module",
   "scripts": {
-    "dev": "concurrently -k -n SERVER,VITE -c cyan,magenta \"node server/index.js\" \"vite\"",
-    "server": "node server/index.js",
+    "dev": "vite",
     "build": "tsc -b && vite build",
     "preview": "vite preview",
     "lint": "eslint ."
